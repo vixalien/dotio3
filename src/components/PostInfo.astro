@@ -1,0 +1,27 @@
+---
+import type { CollectionEntry } from "astro:content";
+import Intro from "./Intro.astro";
+import Tags from "./Tags.astro";
+
+type Props = Pick<
+  CollectionEntry<"blog">["data"],
+  "title" | "description" | "pubDate"
+>
+
+const { title, description, pubDate } = Astro.props;
+---
+
+<>
+  <Intro title={title} created={pubDate} author="Angelo Verlain" />
+  <p>
+    {description}
+    <!-- {state.readtime && (
+          <span>
+            <br />
+            {post.readTime} min read.
+          </span>
+        )} -->
+    <br />
+    <Tags tags={[]} />
+  </p>
+</>

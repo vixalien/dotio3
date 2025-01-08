@@ -1,0 +1,29 @@
+---
+import PrettyDate from "./PrettyDate.astro";
+
+export type DateFormat = (date: Date) => string;
+
+interface Props {
+  title: string | null;
+  created?: Date;
+  author?: string;
+  dateFormat?: DateFormat;
+}
+
+const { title, created, author, dateFormat } = Astro.props;
+---
+
+<div class="intro">
+  {
+    created ? (
+      <>
+        <small>
+          {author && <span>{author || ""} at </span>}
+          <PrettyDate date={created} dateFormat={dateFormat} />
+        </small>
+        <br />
+      </>
+    ) : null
+  }
+  <h1>{title}</h1>
+</div>

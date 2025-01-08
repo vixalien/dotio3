@@ -1,0 +1,23 @@
+---
+import type { DateFormat } from "./Intro.astro";
+
+interface Props {
+  date: Date;
+  dateFormat?: DateFormat;
+}
+
+const { date, dateFormat } = Astro.props;
+
+let formatted;
+if (dateFormat) {
+  formatted = dateFormat(date);
+} else {
+  formatted = date.toLocaleDateString("en-uk", {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+  });
+}
+---
+
+<time datetime={date.toISOString()}>{formatted}</time>

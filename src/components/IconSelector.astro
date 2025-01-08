@@ -1,0 +1,64 @@
+---
+import IconCoffee from "./icons/IconCoffee.astro";
+import IconDocument from "./icons/IconDocument.astro";
+import IconEmail from "./icons/IconEmail.astro";
+import IconExternalLink from "./icons/IconExternalLink.astro";
+import IconGithub from "./icons/IconGithub.astro";
+import IconLinkedIn from "./icons/IconLinkedIn.astro";
+import IconMastodon from "./icons/IconMastodon.astro";
+import IconRssFeed from "./icons/IconRssFeed.astro";
+
+export interface Props {
+  link: string;
+}
+
+const { link } = Astro.props;
+
+const url = new URL(link, "https://i.rock");
+
+const fedi = new Set(["mas.to", "mastodon.social"] as const);
+type FediType = typeof fedi extends Set<infer A> ? A : never;
+
+const allowed = new Set([
+  "email",
+  "buymeacoffee.com",
+  "github.com",
+  "twitter.com",
+  "instagram.com",
+  "linkedin.com",
+  "fedi",
+  "external",
+  "document",
+  "rss",
+] as const);
+export type DomainType = typeof allowed extends Set<infer A> ? A : never;
+
+let type: DomainType = "external";
+
+if (url.pathname.endsWith(".pdf")) {
+  type = "document";
+} else if (url.protocol === "mailto:") {
+  type = "email";
+} else {
+  type = url.hostname.replace(/^www\./, "") as DomainType;
+  if (fedi.has(type as FediType)) type = "fedi";
+}
+
+if (!allowed.has(type)) type = "external";
+---
+
+{type === "buymeacoffee.com" && <IconCoffee />}
+
+{type === "document" && <IconDocument />}
+
+{type === "email" && <IconEmail />}
+
+{type === "external" && <IconExternalLink />}
+
+{type === "github.com" && <IconGithub />}
+
+{type === "linkedin.com" && <IconLinkedIn />}
+
+{type === "fedi" && <IconMastodon />}
+
+{type === "rss" && <IconRssFeed />}

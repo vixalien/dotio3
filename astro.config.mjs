@@ -1,10 +1,14 @@
 // @ts-check
-import { defineConfig } from 'astro/config';
-import mdx from '@astrojs/mdx';
-import sitemap from '@astrojs/sitemap';
+import { defineConfig } from "astro/config";
+import sitemap from "@astrojs/sitemap";
 
 // https://astro.build/config
 export default defineConfig({
-	site: 'https://example.com',
-	integrations: [mdx(), sitemap()],
+	site: "https://www.vixalien.com",
+	integrations: [sitemap()],
+	redirects: {
+		"/blog": "/",
+		"/posts": "/",
+		"/feed": "/rss.xml",
+	},
 });

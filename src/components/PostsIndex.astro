@@ -1,0 +1,73 @@
+---
+import { getCollection } from "astro:content";
+import PrettyDate from "./PrettyDate.astro";
+import Tags from "./Tags.astro";
+import type { CollectionEntry } from "astro:content";
+
+const posts = (await getCollection("blog")).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+
+type Post = CollectionEntry<"blog">;
+
+const postsByYear = Object.entries(
+  posts.reduce(
+    (acc, post) => {
+      const year = post.data.pubDate.getFullYear().toString();
+      acc[year] ??= [];
+      acc[year].push(post);
+      return acc;
+    },
+    {} as Record<string, Post[]>,
+  ),
+).sort(([year1], [year2]) => year2.localeCompare(year1));
+
+const author = "Angelo Verlain",
+  tags: string[] = [];
+---
+
+<div class="posts">
+  {
+    postsByYear.map(([year, posts]) => {
+      if (!posts) return null;
+
+      return (
+        <>
+          <h3>{year}</h3>
+          {posts.map(
+            ({
+              body,
+              id,
+              data: {
+                title,
+                description: snippet,
+                updatedDate: publishDate,
+                heroImage,
+              },
+            }) => (
+              <p>
+                {heroImage ? (
+                  <a href={`/blog/${id}`} class="post-image" aria-label={title}>
+                    <img src={heroImage} alt={title} />
+                  </a>
+                ) : null}
+                <a href={`/blog/${id}`} class="post-title">
+                  <span>{title} &rarr;</span>
+                </a>
+                <br />
+                <small class="intro-meta">
+                  {/* {author && <span>{author || ""} at </span>} */}
+                  <PrettyDate date={publishDate ?? new Date()} />
+                </small>
+                <br />
+                <span>{snippet}</span>
+                <br />
+                <Tags tags={tags} />
+              </p>
+            ),
+          )}
+        </>
+      );
+    })
+  }
+</div>

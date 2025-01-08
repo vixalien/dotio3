@@ -1,0 +1,52 @@
+---
+import IconRssFeed from "./icons/IconRssFeed.astro";
+import IconSelector from "./IconSelector.astro";
+
+const links = [
+  {
+    title: "GitHub",
+    url: "https://github.com/vixalien",
+  },
+  {
+    title: "Donate",
+    url: "https://buymeacoffee.com/vixalien",
+    // icon: <CoffeeIcon />,
+  },
+  {
+    title: "Email",
+    url: "mailto:hey[at]vix[remove-this]alien[dot]com",
+  },
+  {
+    title: "Mastodon",
+    url: "https://mas.to/@vixalientoots",
+    rel: "me",
+    // icon: <MastodonIcon />,
+  },
+  {
+    title: "Resume.pdf",
+    url: "/Resume.pdf",
+    // icon: <DocumentIcon />,
+  },
+];
+---
+
+<ul>
+  {
+    links.map((link) => {
+      return (
+        <li>
+          <a href={link.url} class="link-with-icon" rel={link.rel}>
+            <IconSelector link={link.url} />
+            <span>{link.title}</span>
+          </a>
+        </li>
+      );
+    })
+  }
+  <li>
+    <a href="/rss.xml" title="Atom Feed" class="link-with-icon">
+      <IconRssFeed />
+      <span>RSS</span>
+    </a>
+  </li>
+</ul>

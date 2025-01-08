@@ -1,0 +1,28 @@
+---
+export interface Props {
+  image: string;
+  invert: boolean;
+}
+
+const { invert, image } = Astro.props;
+---
+
+<div class={`image-container` + (invert ? " invert" : "")}>
+  <div class="inner-container container">
+    <div class="top">
+      <slot name="top" />
+    </div>
+    <picture>
+      <img src={image} aria-hidden alt="Banner Image for post" />
+    </picture>
+    <div class="bottom" id="main">
+      <slot name="bottom" />
+      <div class="stack">
+        <p>
+          <a href="#main" class="read-link">&darr; Read</a>
+        </p>
+        <hr />
+      </div>
+    </div>
+  </div>
+</div>
