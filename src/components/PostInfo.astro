@@ -5,14 +5,14 @@ import Tags from "./Tags.astro";
 
 type Props = Pick<
   CollectionEntry<"blog">["data"],
-  "title" | "description" | "pubDate"
+  "title" | "description" | "publish_date" | "tags"
 >
 
-const { title, description, pubDate } = Astro.props;
+const { title, description, publish_date, tags } = Astro.props;
 ---
 
 <>
-  <Intro title={title} created={pubDate} author="Angelo Verlain" />
+  <Intro title={title} created={publish_date} author="Angelo Verlain" />
   <p>
     {description}
     <!-- {state.readtime && (
@@ -22,6 +22,6 @@ const { title, description, pubDate } = Astro.props;
           </span>
         )} -->
     <br />
-    <Tags tags={[]} />
+    <Tags tags={tags} />
   </p>
 </>

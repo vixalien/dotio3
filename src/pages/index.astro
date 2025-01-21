@@ -1,6 +1,6 @@
 ---
 import BaseHead from "../components/BaseHead.astro";
-import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
+import { SITE_TITLE, SITE_DESCRIPTION, AUTHOR } from "../consts";
 import Intro from "../components/Intro.astro";
 import Welcome from "../components/Welcome.astro";
 import PostsIndex from "../components/PostsIndex.astro";
@@ -25,7 +25,7 @@ import ContactLinks from "../components/ContactLinks.astro";
 			<h2>Contact & Links</h2>
 			<ContactLinks />
 			<footer>
-				&copy; Angelo Verlain {new Date().getFullYear()}
+				&copy; {AUTHOR} {new Date().getFullYear()}
 			</footer>
 		</main>
 	</body>

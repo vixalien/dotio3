@@ -121,7 +121,7 @@ a:active {
 }
 
 .posts > p {
-	margin-bottom: 4em;
+	margin-bottom: 2em;
 }
 
 .posts > p a.post-title {
@@ -368,4 +368,72 @@ tr:not(:last-of-type) td {
 	.image-container h1 {
 		color: inherit;
 	}
+}
+
+code,
+kbd,
+samp,
+pre {
+	font-family:
+		/* macOS 10.10+ */ "Menlo",
+		/* Windows 6+ */ "Consolas",
+		/* Android 4+ */ "Roboto Mono",
+		/* Ubuntu 10.10+ */ "Ubuntu Monospace",
+		/* KDE Plasma 5+ */ "Noto Mono",
+		/* KDE Plasma 4+ */ "Oxygen Mono",
+		/* Linux/OpenOffice fallback */ "Liberation Mono",
+		/* fallback */ monospace,
+		/* macOS emoji */ "Apple Color Emoji",
+		/* Windows emoji */ "Segoe UI Emoji",
+		/* Windows emoji */ "Segoe UI Symbol",
+		/* Linux emoji */ "Noto Color Emoji";
+}
+
+blockquote {
+	margin: 3em 0;
+	padding: 10px 0;
+	border-width: 4px 0;
+	border-style: double;
+}
+
+blockquote p {
+	margin: 0;
+}
+
+code {
+	padding: 0 5px;
+	font-size: 0.9em;
+	border: 1px solid;
+	border-radius: 5px;
+	line-height: 1;
+}
+
+pre:not(.not-code) code {
+	display: block;
+	padding: 10px;
+	color: #b2b6bb;
+	background-color: #0a1826;
+	border: 0;
+	line-height: 1.5;
+}
+
+code,
+pre {
+	text-align: left;
+	white-space: pre;
+	word-spacing: normal;
+	word-break: normal;
+	word-wrap: normal;
+	-moz-tab-size: 2;
+	-o-tab-size: 2;
+	tab-size: 2;
+	-webkit-hyphens: none;
+	-moz-hyphens: none;
+	-ms-hyphens: none;
+	hyphens: none;
+	overflow: auto;
+}
+
+pre {
+	background-color: transparent  !important;
 }

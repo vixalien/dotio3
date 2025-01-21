@@ -5,7 +5,7 @@ import Tags from "./Tags.astro";
 import type { CollectionEntry } from "astro:content";
 
 const posts = (await getCollection("blog")).sort(
-  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+  (a, b) => b.data.publish_date.valueOf() - a.data.publish_date.valueOf(),
 );
 
 type Post = CollectionEntry<"blog">;
@@ -13,7 +13,7 @@ type Post = CollectionEntry<"blog">;
 const postsByYear = Object.entries(
   posts.reduce(
     (acc, post) => {
-      const year = post.data.pubDate.getFullYear().toString();
+      const year = post.data.publish_date.getFullYear().toString();
       acc[year] ??= [];
       acc[year].push(post);
       return acc;
@@ -21,9 +21,6 @@ const postsByYear = Object.entries(
     {} as Record<string, Post[]>,
   ),
 ).sort(([year1], [year2]) => year2.localeCompare(year1));
-
-const author = "Angelo Verlain",
-  tags: string[] = [];
 ---
 
 <div class="posts">
@@ -36,19 +33,19 @@ const author = "Angelo Verlain",
           <h3>{year}</h3>
           {posts.map(
             ({
-              body,
               id,
               data: {
                 title,
                 description: snippet,
-                updatedDate: publishDate,
-                heroImage,
+                publish_date,
+                hero_image,
+                tags,
               },
             }) => (
               <p>
-                {heroImage ? (
+                {hero_image ? (
                   <a href={`/blog/${id}`} class="post-image" aria-label={title}>
-                    <img src={heroImage} alt={title} />
+                    <img src={hero_image} alt={title} />
                   </a>
                 ) : null}
                 <a href={`/blog/${id}`} class="post-title">
@@ -57,7 +54,7 @@ const author = "Angelo Verlain",
                 <br />
                 <small class="intro-meta">
                   {/* {author && <span>{author || ""} at </span>} */}
-                  <PrettyDate date={publishDate ?? new Date()} />
+                  <PrettyDate date={publish_date ?? new Date()} />
                 </small>
                 <br />
                 <span>{snippet}</span>

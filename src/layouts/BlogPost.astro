@@ -4,11 +4,11 @@ import BaseHead from "../components/BaseHead.astro";
 import Header from "../components/Header.astro";
 import ImageContainer from "../components/ImageContainer.astro";
 import PostInfo from "../components/PostInfo.astro";
-import { PUBLISH_YEAR, SITE_TITLE } from "../consts";
+import { AUTHOR, PUBLISH_YEAR, SITE_TITLE } from "../consts";
 
 type Props = CollectionEntry<"blog">["data"];
 
-const { title, description, pubDate, heroImage } = Astro.props;
+const { title, description, publish_date, hero_image, tags } = Astro.props;
 ---
 
 <html lang="en">
@@ -18,8 +18,8 @@ const { title, description, pubDate, heroImage } = Astro.props;
 
 	<body class="overflow-yes">
 		{
-			heroImage && (
-				<ImageContainer image={heroImage} invert={false}>
+			hero_image && (
+				<ImageContainer image={hero_image} invert={false}>
 					<Fragment slot="top">
 						<Header title={SITE_TITLE} />
 					</Fragment>
@@ -27,7 +27,8 @@ const { title, description, pubDate, heroImage } = Astro.props;
 						<PostInfo
 							title={title}
 							description={description}
-							pubDate={pubDate}
+							publish_date={publish_date}
+							tags={tags}
 						/>
 					</Fragment>
 				</ImageContainer>
@@ -35,15 +36,17 @@ const { title, description, pubDate, heroImage } = Astro.props;
 		}
 		<main class="container">
 			{
-				!heroImage && (
+				!hero_image && (
 					<>
 						<Header title={SITE_TITLE} />
 						<PostInfo
 							title={title}
 							description={description}
-							pubDate={pubDate}
+							publish_date={publish_date}
+							tags={tags}
 						/>
 						<hr />
+						<br />
 					</>
 				)
 			}
@@ -58,7 +61,7 @@ const { title, description, pubDate, heroImage } = Astro.props;
 					(
 						<div>
 							<br />
-							<span>&copy; Angelo Verlain {PUBLISH_YEAR}</span>
+							<span>&copy; {AUTHOR} {PUBLISH_YEAR}</span>
 						</div>
 					)
 				}
