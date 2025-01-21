@@ -38,7 +38,7 @@ jobs:
         uses: denoland/deployctl@v1
         with:
           project: "dotio3"
-          entrypoint: ""
+          entrypoint: "jsr:@std/http/file-server"
           root: "dist"
           
           
