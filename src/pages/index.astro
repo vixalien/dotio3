@@ -5,6 +5,7 @@ import Intro from "../components/Intro.astro";
 import Welcome from "../components/Welcome.astro";
 import PostsIndex from "../components/PostsIndex.astro";
 import ContactLinks from "../components/ContactLinks.astro";
+import ProjectsIndex from "../components/ProjectsIndex.astro";
 ---
 
 <!doctype html>
@@ -20,6 +21,14 @@ import ContactLinks from "../components/ContactLinks.astro";
 				GTK developer and this is my website, a collection of projects and
 				writings.
 			</Welcome>
+			<div class="heading">
+				<h2>Projects</h2>
+				<a href="/portfolio">Portfolio &rarr;</a>
+			</div>
+			<ProjectsIndex limit={3} />
+			<p>
+				<a href="/portfolio">More Projects &rarr;</a>
+			</p>
 			<div class="heading">
 				<h2>Posts</h2>
 				<a href="/blog">All Posts &rarr;</a>
@@ -39,9 +48,9 @@ import ContactLinks from "../components/ContactLinks.astro";
 </html>
 
 <style>
-.heading {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-}
+	.heading {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
 </style>

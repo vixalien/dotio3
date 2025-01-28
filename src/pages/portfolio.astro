@@ -1,0 +1,38 @@
+---
+import BaseHead from "../components/BaseHead.astro";
+import { SITE_TITLE, SITE_DESCRIPTION, AUTHOR, PUBLISH_YEAR } from "../consts";
+import Intro from "../components/Intro.astro";
+import Welcome from "../components/Welcome.astro";
+import Header from "../components/Header.astro";
+import ProjectsIndex from "../components/ProjectsIndex.astro";
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={`vixalien´s portfolio`} description={SITE_DESCRIPTION} />
+	</head>
+	<body>
+		<main class="container">
+			<Header title={SITE_TITLE} />
+			<Intro title={`vixalien´s portfolio`} />
+			<Welcome> Work I've worked on in the past. </Welcome>
+			<h2>Projects</h2>
+			<ProjectsIndex />
+
+			<footer>
+				<a class="top" href="#top">↑ Scroll to Top</a>
+				{
+					(
+						<div>
+							<br />
+							<span>
+								&copy; {AUTHOR} {PUBLISH_YEAR}
+							</span>
+						</div>
+					)
+				}
+			</footer>
+		</main>
+	</body>
+</html>
