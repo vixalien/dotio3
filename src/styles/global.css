@@ -120,29 +120,6 @@ a:active {
 	max-width: calc(100vw - calc(var(--padding-right) + var(--padding-left)));
 }
 
-.posts > p {
-	margin-bottom: 2em;
-}
-
-.posts > p a.post-title {
-	font-size: 1.1em;
-	font-weight: 900;
-	border-bottom-width: 2px;
-}
-
-.posts > p a.post-image {
-	border-bottom: none;
-}
-
-.posts > p a.post-image img {
-	width: 100%;
-	aspect-ratio: 16/9;
-	overflow: hidden;
-	object-fit: cover;
-	border-radius: 6px;
-	margin-bottom: 0.5em;
-}
-
 .container {
 	max-width: var(--max-width);
 	padding: 30px 20px;
