@@ -21,23 +21,27 @@ import ProjectsIndex from "../components/ProjectsIndex.astro";
 				GTK developer and this is my website, a collection of projects and
 				writings.
 			</Welcome>
-			<div class="heading">
-				<h2>Projects</h2>
-				<a href="/portfolio">Portfolio &rarr;</a>
-			</div>
-			<ProjectsIndex limit={3} />
-			<p>
-				<a href="/portfolio">More Projects &rarr;</a>
-			</p>
-			<div class="heading">
-				<h2>Posts</h2>
-				<a href="/blog">All Posts &rarr;</a>
-			</div>
-			<PostsIndex limit={3} />
-			<p>
-				<a href="/blog">More Blog Posts &rarr;</a>
-			</p>
-			<h2>Contact & Links</h2>
+			<Fragment>
+				<div class="heading">
+					<h2>Posts</h2>
+					<a href="/blog">All Posts &rarr;</a>
+				</div>
+				<PostsIndex limit={3} />
+				<p>
+					<a href="/blog">More Blog Posts &rarr;</a>
+				</p>
+			</Fragment>
+			<Fragment>
+				<div class="heading">
+					<h2>Projects</h2>
+					<a href="/portfolio">Portfolio &rarr;</a>
+				</div>
+				<ProjectsIndex limit={3} />
+				<p>
+					<a href="/portfolio">More Projects &rarr;</a>
+				</p>
+			</Fragment>
+			<h2 id="contact">Contact & Links</h2>
 			<ContactLinks />
 			<footer>
 				&copy; {AUTHOR}
