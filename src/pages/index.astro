@@ -20,13 +20,28 @@ import ContactLinks from "../components/ContactLinks.astro";
 				GTK developer and this is my website, a collection of projects and
 				writings.
 			</Welcome>
-			<h2>Posts</h2>
-			<PostsIndex />
+			<div class="heading">
+				<h2>Posts</h2>
+				<a href="/blog">All Posts &rarr;</a>
+			</div>
+			<PostsIndex limit={3} />
+			<p>
+				<a href="/blog">More Blog Posts &rarr;</a>
+			</p>
 			<h2>Contact & Links</h2>
 			<ContactLinks />
 			<footer>
-				&copy; {AUTHOR} {new Date().getFullYear()}
+				&copy; {AUTHOR}
+				{new Date().getFullYear()}
 			</footer>
 		</main>
 	</body>
 </html>
+
+<style>
+.heading {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+</style>

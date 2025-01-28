@@ -4,9 +4,15 @@ import PrettyDate from "./PrettyDate.astro";
 // import Tags from "./Tags.astro";
 import type { CollectionEntry } from "astro:content";
 
-const posts = (await getCollection("blog")).sort(
-  (a, b) => b.data.publish_date.valueOf() - a.data.publish_date.valueOf(),
-);
+interface Props {
+  limit?: number;
+}
+
+const { limit = Infinity } = Astro.props;
+
+const posts = (await getCollection("blog"))
+  .sort((a, b) => b.data.publish_date.valueOf() - a.data.publish_date.valueOf())
+  .slice(0, limit);
 
 type Post = CollectionEntry<"blog">;
 

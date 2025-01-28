@@ -7,7 +7,6 @@ export default defineConfig({
 	site: "https://www.vixalien.com",
 	integrations: [sitemap()],
 	redirects: {
-		"/blog": "/",
 		"/posts": "/",
 		"/feed": "/rss.xml",
 	},
