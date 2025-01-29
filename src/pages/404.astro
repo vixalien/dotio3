@@ -2,7 +2,6 @@
 import BaseHead from "../components/BaseHead.astro";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
 import Intro from "../components/Intro.astro";
-import Welcome from "../components/Welcome.astro";
 import Header from "../components/Header.astro";
 ---
 
@@ -18,7 +17,7 @@ import Header from "../components/Header.astro";
     <main class="container">
       <Header title={SITE_TITLE} />
       <Intro title="404 - page not found" />
-      <Welcome> You're lost, but aren't we all? :) </Welcome>
+      <p>You're lost, but aren't we all? :)</p>
     </main>
   </body>
 </html>

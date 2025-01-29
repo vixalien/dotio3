@@ -185,10 +185,6 @@ article img {
 	margin-bottom: 0;
 }
 
-.welcome p.description {
-	color: var(--fg);
-}
-
 .tags a {
 	color: inherit;
 }

@@ -2,7 +2,6 @@
 import BaseHead from "../components/BaseHead.astro";
 import { SITE_TITLE, SITE_DESCRIPTION, AUTHOR, PUBLISH_YEAR } from "../consts";
 import Intro from "../components/Intro.astro";
-import Welcome from "../components/Welcome.astro";
 import Header from "../components/Header.astro";
 import ProjectsIndex from "../components/ProjectsIndex.astro";
 ---
@@ -16,7 +15,7 @@ import ProjectsIndex from "../components/ProjectsIndex.astro";
 		<main class="container">
 			<Header title={SITE_TITLE} />
 			<Intro title={`vixalien´s portfolio`} />
-			<Welcome> Work I've worked on in the past. </Welcome>
+			<p> Work I've worked on in the past. </p>
 			<h2>Projects</h2>
 			<ProjectsIndex />
 

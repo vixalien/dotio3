@@ -2,7 +2,6 @@
 import BaseHead from "../components/BaseHead.astro";
 import { SITE_TITLE, SITE_DESCRIPTION, AUTHOR, PUBLISH_YEAR } from "../consts";
 import Intro from "../components/Intro.astro";
-import Welcome from "../components/Welcome.astro";
 import PostsIndex from "../components/PostsIndex.astro";
 import ContactLinks from "../components/ContactLinks.astro";
 import Header from "../components/Header.astro";
@@ -17,7 +16,7 @@ import Header from "../components/Header.astro";
 		<main class="container">
 			<Header title={SITE_TITLE} />
 			<Intro title={`vixalien´s blog`} />
-			<Welcome> An archive of all my blog posts. </Welcome>
+			<p> An archive of all my blog posts. </p>
 			<h2>Posts</h2>
 			<PostsIndex />
 
