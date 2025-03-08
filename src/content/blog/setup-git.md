@@ -39,6 +39,7 @@ Create a file called `.gitconfig` in your home directory. On Windows, it is `C:\
     name = First Last Name
 [push]
     default = current
+	autoSetupRemote = true
 [credential]
     helper = store
 [alias]
