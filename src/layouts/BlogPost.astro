@@ -12,60 +12,63 @@ const { title, description, publish_date, hero_image, tags } = Astro.props;
 ---
 
 <html lang="en">
-	<head>
-		<BaseHead title={`${title} - vixalien´s blog`} description={description} />
-	</head>
+  <head>
+    <BaseHead title={`${title} - vixalien´s blog`} description={description} />
+    <meta name="fediverse:creator" content="@vixalientoots@mas.to" />
+  </head>
 
-	<body class="overflow-yes">
-		{
-			hero_image && (
-				<ImageContainer image={hero_image} invert={false}>
-					<Fragment slot="top">
-						<Header title={SITE_TITLE} />
-					</Fragment>
-					<Fragment slot="bottom">
-						<PostInfo
-							title={title}
-							description={description}
-							publish_date={publish_date}
-							tags={tags}
-						/>
-					</Fragment>
-				</ImageContainer>
-			)
-		}
-		<main class="container">
-			{
-				!hero_image && (
-					<>
-						<Header title={SITE_TITLE} />
-						<PostInfo
-							title={title}
-							description={description}
-							publish_date={publish_date}
-							tags={tags}
-						/>
-						<hr />
-						<br />
-					</>
-				)
-			}
-			<article>
-				<slot />
-			</article>
-			<hr />
-			<br />
-			<span>
-				<a class="top" href="#top">↑ Scroll to Top</a>
-				{
-					(
-						<div>
-							<br />
-							<span>&copy; {AUTHOR} {PUBLISH_YEAR}</span>
-						</div>
-					)
-				}
-			</span>
-		</main>
-	</body>
+  <body class="overflow-yes">
+    {
+      hero_image && (
+        <ImageContainer image={hero_image} invert={false}>
+          <Fragment slot="top">
+            <Header title={SITE_TITLE} />
+          </Fragment>
+          <Fragment slot="bottom">
+            <PostInfo
+              title={title}
+              description={description}
+              publish_date={publish_date}
+              tags={tags}
+            />
+          </Fragment>
+        </ImageContainer>
+      )
+    }
+    <main class="container">
+      {
+        !hero_image && (
+          <>
+            <Header title={SITE_TITLE} />
+            <PostInfo
+              title={title}
+              description={description}
+              publish_date={publish_date}
+              tags={tags}
+            />
+            <hr />
+            <br />
+          </>
+        )
+      }
+      <article>
+        <slot />
+      </article>
+      <hr />
+      <br />
+      <span>
+        <a class="top" href="#top">↑ Scroll to Top</a>
+        {
+          (
+            <div>
+              <br />
+              <span>
+                &copy; {AUTHOR} {PUBLISH_YEAR}
+              </span>
+            </div>
+          )
+        }
+      </span>
+    </main>
+  </body>
 </html>
