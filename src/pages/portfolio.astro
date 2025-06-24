@@ -8,30 +8,34 @@ import ProjectsIndex from "../components/ProjectsIndex.astro";
 
 <!doctype html>
 <html lang="en">
-	<head>
-		<BaseHead title={`vixalien´s portfolio`} description={SITE_DESCRIPTION} />
-	</head>
-	<body>
-		<main class="container">
-			<Header title={SITE_TITLE} />
-			<Intro title={`vixalien´s portfolio`} />
-			<p> Work I've worked on in the past. </p>
-			<h2>Projects</h2>
-			<ProjectsIndex />
+  <head>
+    <BaseHead title={`vixalien´s portfolio`} description={SITE_DESCRIPTION} />
+  </head>
+  <body>
+    <main class="container">
+      <Header title={SITE_TITLE} />
+      <Intro title={`vixalien´s portfolio`} />
+      <p>Personal projects I've worked on in the past.</p>
+      <p>
+        For more projects (most of them are open source), see my
+        <a href="https://github.com/vixalien">GitHub</a>.
+      </p>
+      <h2>Projects</h2>
+      <ProjectsIndex />
 
-			<footer>
-				<a class="top" href="#top">↑ Scroll to Top</a>
-				{
-					(
-						<div>
-							<br />
-							<span>
-								&copy; {AUTHOR} {PUBLISH_YEAR}
-							</span>
-						</div>
-					)
-				}
-			</footer>
-		</main>
-	</body>
+      <footer>
+        <a class="top" href="#top">↑ Scroll to Top</a>
+        {
+          (
+            <div>
+              <br />
+              <span>
+                &copy; {AUTHOR} {PUBLISH_YEAR}
+              </span>
+            </div>
+          )
+        }
+      </footer>
+    </main>
+  </body>
 </html>
