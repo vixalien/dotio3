@@ -13,21 +13,12 @@ const projects = (await getCollection("portfolio")).slice(0, limit);
 type Project = CollectionEntry<"portfolio">;
 ---
 
-<div class="projects">
+<div class="grid lg:grid-cols-2 lg:-mx-20 gap-4 mb-5">
   {
     projects.map(
-      ({
-        id,
-        data: {
-          title,
-          description,
-          hero_image,
-          bg_color,
-          link
-        },
-      }) => (
+      ({ data: { title, description, hero_image, bg_color, link } }) => (
         <a
-          class="project"
+          class="border-0 rounded-lg hover:saturate-50 transition text-bg flex flex-col items-center"
           href={link}
           style={bg_color ? { "background-color": bg_color } : null}
           target="_blank"
@@ -35,75 +26,14 @@ type Project = CollectionEntry<"portfolio">;
           {hero_image ? (
             <img class="project-image" src={hero_image} alt={title} />
           ) : null}
-          <h3 class="project-title">
-            <span>{title}</span> <span class="project-arrow">&rarr;</span>
-          </h3>
-          <span>{description}</span>
-          <br />
+          <div class="p-4 pt-0 flex flex-col items-center">
+            <h3 class="text-inherit mb-1">
+              <span>{title}</span>
+            </h3>
+            <span>{description}</span>
+          </div>
         </a>
       ),
     )
   }
 </div>
-
-<style>
-  .project {
-    --padding: 12px;
-    --link: var(--fg);
-    --link-bg: #abd5ff;
-    --link-bg-hover: #7ebfff;
-
-    background-color: var(--link-bg);
-    border-radius: 12px;
-    padding: var(--padding);
-    margin-inline: calc(-1 * var(--padding));
-    margin-bottom: 2em;
-    border-bottom: none;
-    transition: 0.3s background-color;
-    text-align: center;
-    min-height: 200px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 1rem;
-  }
-
-  @media screen and (prefers-color-scheme: dark) {
-    .project {
-      --link-bg: #153e68;
-      --link-bg-hover: #2c6fb8;
-      --fg: white;
-    }
-  }
-
-  .project:hover {
-    background-color: var(--link-bg-hover);
-  }
-
-  .project-arrow {
-    display: inline-block;
-    transition: 0.3s translate;
-  }
-
-  .project:hover .project-arrow,
-  .project:focus .project-arrow {
-    translate: 10px;
-  }
-
-  .project .project-title {
-    font-size: 1.25em;
-    font-weight: 900;
-    border-bottom-width: 2px;
-    margin: 0;
-    color: inherit;
-  }
-
-  .project a.project-image {
-    border-bottom: none;
-  }
-
-  .project .project-image {
-    width: 100%;
-    border-radius: 6px;
-  }
-</style>

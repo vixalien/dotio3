@@ -37,99 +37,33 @@ const postsByYear = Object.entries(
       return (
         <>
           <h3>{year}</h3>
-          {posts.map(
-            ({
-              id,
-              data: {
-                title,
-                description: snippet,
-                publish_date,
-                hero_image,
-                // tags,
-              },
-            }) => (
-              <a class="post" href={`/blog/${id}`}>
-                {hero_image ? (
-                  <img class="post-image" src={hero_image} alt={title} />
-                ) : null}
-                <h3 class="post-title">
-                  <span>{title}</span> <span class="post-arrow">&rarr;</span>
-                </h3>
-                <br />
-                <small class="intro-meta">
-                  {/* {author && <span>{author || ""} at </span>} */}
-                  <PrettyDate date={publish_date ?? new Date()} />
-                </small>
-                <br />
-                <span>{snippet}</span>
-                <br />
-                {/* <Tags tags={tags} /> */}
-              </a>
-            ),
-          )}
+          <ul>
+            {posts.map(
+              ({
+                id,
+                data: {
+                  title,
+                  description: snippet,
+                  publish_date,
+                  hero_image,
+                  // tags,
+                },
+              }) => (
+                <li>
+                  <div class="flex gap-2 items-center">
+                    <a href={`/blog/${id}`} class="leading-tight inline-block">
+                      {title}
+                    </a>
+                    <div class="border-b border-dashed self-center flex-1" />
+                    <PrettyDate date={publish_date ?? new Date()} />
+                  </div>
+                  <p>{snippet}</p>
+                </li>
+              ),
+            )}
+          </ul>
         </>
       );
     })
   }
 </div>
-
-<style>
-  .post {
-    --padding: 12px;
-    --link: var(--fg);
-    --link-bg: #abd5ff;
-    --link-bg-hover: #7ebfff;
-
-    background-color: var(--link-bg);
-    border-radius: 12px;
-    padding: var(--padding);
-    margin-inline: calc(-1 * var(--padding));
-    display: block;
-    margin-bottom: 2em;
-    border-bottom: none;
-    transition: 0.3s background-color;
-  }
-
-  @media screen and (prefers-color-scheme: dark) {
-    .post {
-      --link-bg: #153e68;
-      --link-bg-hover: #2c6fb8;
-      --fg: white;
-    }
-  }
-
-  .post:hover {
-    background-color: var(--link-bg-hover);
-  }
-
-  .post-arrow {
-    display: inline-block;
-    transition: 0.3s translate;
-  }
-
-  .post:hover .post-arrow,
-  .post:focus .post-arrow {
-    translate: 10px;
-  }
-
-  .post .post-title {
-    font-size: 1.1em;
-    font-weight: 900;
-    border-bottom-width: 2px;
-    margin: 0;
-    color: inherit;
-  }
-
-  .post a.post-image {
-    border-bottom: none;
-  }
-
-  .post .post-image {
-    width: 100%;
-    aspect-ratio: 16/9;
-    overflow: hidden;
-    object-fit: cover;
-    border-radius: 6px;
-    margin-bottom: 0.5em;
-  }
-</style>

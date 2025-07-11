@@ -1,412 +1,103 @@
-html {
-	--secondary: #666;
-	--fg: #333;
-	--bg: #fff;
-	--heading-fg: #000;
-	--link: #0169ec;
-	color-scheme: light dark;
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Atkinson Hyperlegible";
+
+  --color-fg: #333;
+  --color-bg: #fff;
+  --color-heading: #000;
+  --color-link: #0169ec;
 }
 
-@media (prefers-color-scheme: dark) {
-	html {
-		--secondary: #8e8e8e;
-		--fg: #a0a0a0;
-		--bg: #030f1b;
-		--heading-fg: #fff;
-		--link: #5a99ff;
-	}
+@layer base {
+  html {
+    @apply scroll-smooth;
+  }
+
+  body {
+    @apply text-fg;
+  }
+
+  a {
+    @apply text-link border-b hover:text-fg;
+  }
+
+  p,
+  ol,
+  ul,
+  dl,
+  table {
+    @apply mb-6;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply text-heading font-bold mb-4;
+  }
+
+  h1 {
+    @apply text-4xl;
+  }
+
+  h2 {
+    @apply text-3xl;
+  }
+
+  h3 {
+    @apply text-2xl;
+  }
+
+  h4 {
+    @apply text-xl;
+  }
+
+  h5 {
+    @apply text-lg;
+  }
+
+  ul {
+    @apply list-["–__"] pl-10 flex flex-col gap-2;
+  }
+
+  ol {
+    @apply list-decimal pl-10 flex flex-col gap-2;
+  }
+
+  pre {
+    @apply bg-transparent! my-4;
+  }
+
+  code {
+    @apply text-sm rounded;
+  }
+
+  code:not(pre code) {
+    @apply px-1 border;
+  }
+
+  pre code {
+    @apply block p-2  bg-[#0a1826] text-[#b2b6bb];
+  }
+
+  blockquote {
+    @apply my-12 py-3 border-y-4 border-double *:mb-0;
+  }
 }
 
-ol, ul, menu {
-	list-style: initial;
+@font-face {
+  font-family: "Atkinson Hyperlegible";
+  src: url("/fonts/atkinson-regular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
 }
 
-:root {
-	/* Paddings */
-	--padding-top: 30px;
-	--padding-bottom: 30px;
-	--padding-right: 20px;
-	--padding-left: 20px;
-	--max-width: 620px;
-	/* Box shadow */
-	--box-shadow: 0 0 0px 3px #bac7d4;
-}
-
-*,
-*::before,
-*::after {
-	box-sizing: border-box;
-}
-
-html {
-	font-family:
-		system-ui,
-		/* macOS 10.11-10.12 */ -apple-system,
-		/* Windows 6+ */ "Segoe UI",
-		/* Android 4+ */ "Roboto",
-		/* Ubuntu 10.10+ */ "Ubuntu",
-		/* Gnome 3+ */ "Cantarell",
-		/* KDE Plasma 5+ */ "Noto Sans",
-		/* fallback */ sans-serif,
-		/* macOS emoji */ "Apple Color Emoji",
-		/* Windows emoji */ "Segoe UI Emoji",
-		/* Windows emoji */ "Segoe UI Symbol",
-		/* Linux emoji */ "Noto Color Emoji";
-}
-
-html,
-body {
-	padding: 0;
-	margin: 0;
-	color: var(--fg);
-	background-color: var(--bg);
-	scroll-behavior: smooth;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5 {
-	margin: 0 0 1rem 0;
-	font-weight: 600;
-	color: var(--heading-fg);
-}
-
-p,
-ol,
-ul,
-dl,
-table {
-	margin: 0 0 1.5rem 0;
-	line-height: 1.5;
-}
-
-ul {
-	list-style: "–  ";
-}
-
-li {
-	margin-bottom: 5px;
-}
-
-hr {
-	margin: 0;
-	border: 0;
-	border-top: 1px solid var(--secondary);
-}
-
-a {
-	color: var(--link);
-	text-decoration: none;
-	border-bottom: 1px inset transparent;
-}
-
-a:hover,
-a:focus,
-a:active {
-	border-bottom-color: currentColor;
-}
-
-.overflow-yes .block-code,
-.overflow-yes pre.not-code,
-.overflow-yes article img {
-	display: block;
-	margin: 30px 0;
-	width: fit-content;
-	margin-left: 50%;
-	transform: translateX(-50%);
-	min-width: 100%;
-	max-width: calc(100vw - calc(var(--padding-right) + var(--padding-left)));
-}
-
-.container {
-	max-width: var(--max-width);
-	padding: 30px 20px;
-	width: 100%;
-	margin: auto;
-}
-
-.footer {
-	margin-top: 30px;
-}
-
-.footer hr {
-	padding-bottom: 20px;
-}
-
-.footer a.top {
-	color: inherit;
-	display: inline-block;
-	margin: 10px 0;
-}
-
-header a {
-	color: inherit;
-	border-bottom-style: none;
-}
-
-header a:hover {
-	border-bottom-style: solid;
-}
-
-article img {
-	max-width: 100%;
-	margin: auto;
-	display: flex;
-	border-radius: 6px;
-	box-sizing: content-box;
-}
-
-/* .overflow-yes article img {
-	max-width: unset;
-} */
-
-.block-image .text {
-	text-align: center;
-	margin-top: 10px;
-	color: var(--secondary);
-}
-
-.block-image .text a {
-	color: inherit;
-}
-
-.block-image .text a:hover,
-.block-image .text a:focus {
-	color: var(--link);
-}
-
-.intro {
-	margin: 50px 0 20px;
-}
-
-.intro h1 {
-	margin-bottom: 0;
-}
-
-.tags a {
-	color: inherit;
-}
-
-.link-with-icon {
-	display: inline-flex;
-	gap: 4px;
-	align-items: center;
-	vertical-align: text-top;
-}
-
-.intro-meta {
-	font-weight: bold;
-}
-
-a.tags {
-	border-bottom-style: dotted;
-	border-bottom-color: inherit;
-}
-
-a.tags:focus,
-a.tags:hover,
-a.tags:focus {
-	border-bottom-style: solid;
-	font-weight: bold;
-}
-
-h1 {
-	/* font-size: 2.8em; */
-	font-weight: 800;
-	letter-spacing: -1px;
-}
-
-a:has(code) {
-	border: none;
-}
-a:has(code):is(:hover, :focus, :active) code {
-	background-color: var(--link);
-	color: var(--bg);
-	border-color: var(--link);
-}
-
-table {
-	border-collapse: collapse;
-	min-width: 100%;
-	font-size: 0.85rem;
-}
-
-th,
-td {
-	padding: 0.5rem;
-	text-align: start;
-}
-
-th {
-	border-color: var(--heading-fg);
-	color: var(--heading-fg);
-}
-
-th,
-tr:not(:last-of-type) td {
-	border-bottom: 1px solid;
-}
-
-.image-container {
-	--background-color: rgba(0, 0, 0, 0.33);
-	--text: #fff;
-	display: flex;
-	flex-direction: column;
-	overflow: hidden;
-}
-
-.image-container .inner-container {
-	padding: 20px 20px 0;
-}
-
-.image-container .intro {
-	margin-top: 20px;
-}
-
-.image-container,
-.inner-container {
-	z-index: 0;
-}
-
-.image-container.invert {
-	--background-color: rgba(255, 255, 255, 0.13);
-	/* a very weird firefox bug */
-	--text: #001;
-}
-
-@media screen and (max-width: 600px) {
-	.image-container .stack .read-link {
-		display: none;
-	}
-
-	.image-container img {
-		margin-top: 50px;
-		width: 100%;
-		border-radius: 6px;
-	}
-}
-
-@media screen and (min-width: 600px) {
-	.image-container .stack hr {
-		display: none;
-	}
-
-	.image-container {
-		position: relative;
-		height: 100vh;
-	}
-
-	.image-container .inner-container {
-		padding-bottom: 0;
-		display: flex;
-		flex-direction: column;
-		height: 100%;
-		justify-content: space-between;
-	}
-
-	.image-container img {
-		position: absolute;
-		left: 0;
-		top: 0;
-		z-index: -2;
-		height: 100vh;
-		width: 100vw;
-		object-fit: cover;
-		margin: 0;
-	}
-
-	.image-container .top > header > nav > a {
-		color: var(--text);
-		font-size: xx-large;
-		font-weight: 900;
-		border-bottom-width: 3px;
-		box-shadow: 0 0 100px 100px var(--background-color);
-		background-color: var(--background-color);
-	}
-
-	.image-container .bottom {
-		color: var(--text);
-		box-shadow: 0 0 100px 100px var(--background-color);
-		background-color: var(--background-color);
-	}
-
-	.image-container .read-link {
-		color: inherit;
-		border-bottom-width: 2px;
-		font-weight: bold;
-	}
-
-	.image-container h1 {
-		color: inherit;
-	}
-}
-
-code,
-kbd,
-samp,
-pre {
-	font-family:
-		/* macOS 10.10+ */ "Menlo",
-		/* Windows 6+ */ "Consolas",
-		/* Android 4+ */ "Roboto Mono",
-		/* Ubuntu 10.10+ */ "Ubuntu Monospace",
-		/* KDE Plasma 5+ */ "Noto Mono",
-		/* KDE Plasma 4+ */ "Oxygen Mono",
-		/* Linux/OpenOffice fallback */ "Liberation Mono",
-		/* fallback */ monospace,
-		/* macOS emoji */ "Apple Color Emoji",
-		/* Windows emoji */ "Segoe UI Emoji",
-		/* Windows emoji */ "Segoe UI Symbol",
-		/* Linux emoji */ "Noto Color Emoji";
-}
-
-blockquote {
-	margin: 3em 0;
-	padding: 10px 0;
-	border-width: 4px 0;
-	border-style: double;
-}
-
-blockquote p {
-	margin: 0;
-}
-
-code {
-	padding: 0 5px;
-	font-size: 0.9em;
-	border: 1px solid;
-	border-radius: 5px;
-	line-height: 1;
-}
-
-pre:not(.not-code) code {
-	display: block;
-	padding: 10px;
-	color: #b2b6bb;
-	background-color: #0a1826;
-	border: 0;
-	line-height: 1.5;
-}
-
-code,
-pre {
-	text-align: left;
-	white-space: pre;
-	word-spacing: normal;
-	word-break: normal;
-	word-wrap: normal;
-	-moz-tab-size: 2;
-	-o-tab-size: 2;
-	tab-size: 2;
-	-webkit-hyphens: none;
-	-moz-hyphens: none;
-	-ms-hyphens: none;
-	hyphens: none;
-	overflow: auto;
-}
-
-pre {
-	background-color: transparent  !important;
+@font-face {
+  font-family: "Atkinson Hyperlegible";
+  src: url("/fonts/atkinson-bold.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
 }

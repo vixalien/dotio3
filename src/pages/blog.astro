@@ -5,34 +5,35 @@ import Intro from "../components/Intro.astro";
 import PostsIndex from "../components/PostsIndex.astro";
 import ContactLinks from "../components/ContactLinks.astro";
 import Header from "../components/Header.astro";
+import MainContainer from "../components/MainContainer.astro";
 ---
 
 <!doctype html>
 <html lang="en">
-	<head>
-		<BaseHead title={`vixalien´s blog`} description={SITE_DESCRIPTION} />
-	</head>
-	<body>
-		<main class="container">
-			<Header title={SITE_TITLE} />
-			<Intro title={`vixalien´s blog`} />
-			<p> An archive of all my blog posts. </p>
-			<h2>Posts</h2>
-			<PostsIndex />
+  <head>
+    <BaseHead title={`vixalien´s blog`} description={SITE_DESCRIPTION} />
+  </head>
+  <body>
+    <MainContainer>
+      <Header title={SITE_TITLE} />
+      <Intro title={`vixalien´s blog`} />
+      <p>An archive of all my blog posts.</p>
+      <h2>Posts</h2>
+      <PostsIndex />
 
-			<footer>
-				<a class="top" href="#top">↑ Scroll to Top</a>
-				{
-					(
-						<div>
-							<br />
-							<span>
-								&copy; {AUTHOR} {PUBLISH_YEAR}
-							</span>
-						</div>
-					)
-				}
-			</footer>
-		</main>
-	</body>
+      <footer>
+        <a class="top" href="#top">↑ Scroll to Top</a>
+        {
+          (
+            <div>
+              <br />
+              <span>
+                &copy; {AUTHOR} {PUBLISH_YEAR}
+              </span>
+            </div>
+          )
+        }
+      </footer>
+    </MainContainer>
+  </body>
 </html>

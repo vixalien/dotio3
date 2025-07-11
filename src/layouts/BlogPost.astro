@@ -3,9 +3,9 @@ import type { CollectionEntry } from "astro:content";
 
 import BaseHead from "../components/BaseHead.astro";
 import Header from "../components/Header.astro";
-import ImageContainer from "../components/ImageContainer.astro";
 import PostInfo from "../components/PostInfo.astro";
 import { AUTHOR, PUBLISH_YEAR, SITE_TITLE } from "../consts";
+import MainContainer from "../components/MainContainer.astro";
 
 type Props = CollectionEntry<"blog">["data"];
 
@@ -18,43 +18,31 @@ const { title, description, publish_date, hero_image, tags } = Astro.props;
     <meta name="fediverse:creator" content="@vixalientoots@mas.to" />
   </head>
 
-  <body class="overflow-yes">
-    {
-      hero_image && (
-        <ImageContainer image={hero_image} invert={false}>
-          <Fragment slot="top">
-            <Header title={SITE_TITLE} />
-          </Fragment>
-          <Fragment slot="bottom">
-            <PostInfo
-              title={title}
-              description={description}
-              publish_date={publish_date}
-              tags={tags}
-            />
-          </Fragment>
-        </ImageContainer>
-      )
-    }
-    <main class="container">
+  <body>
+    <MainContainer>
+      <Header title="vixalien´s blog" href="/blog" />
+      <PostInfo
+        title={title}
+        description={description}
+        publish_date={publish_date}
+        tags={tags}
+      />
       {
-        !hero_image && (
-          <>
-            <Header title={SITE_TITLE} />
-            <PostInfo
-              title={title}
-              description={description}
-              publish_date={publish_date}
-              tags={tags}
-            />
-            <hr />
-            <br />
-          </>
+        hero_image ? (
+          <img
+            class="rounded-lg"
+            src={hero_image}
+            alt="Banner Image for post"
+          />
+        ) : (
+          <hr />
         )
       }
+      <br />
       <article>
         <slot />
       </article>
+      <br />
       <hr />
       <br />
       <span>
@@ -70,6 +58,6 @@ const { title, description, publish_date, hero_image, tags } = Astro.props;
           )
         }
       </span>
-    </main>
+    </MainContainer>
   </body>
 </html>

@@ -4,6 +4,7 @@ import { SITE_TITLE, SITE_DESCRIPTION, AUTHOR, PUBLISH_YEAR } from "../consts";
 import Intro from "../components/Intro.astro";
 import Header from "../components/Header.astro";
 import ProjectsIndex from "../components/ProjectsIndex.astro";
+import MainContainer from "../components/MainContainer.astro";
 ---
 
 <!doctype html>
@@ -12,7 +13,7 @@ import ProjectsIndex from "../components/ProjectsIndex.astro";
     <BaseHead title={`vixalien´s portfolio`} description={SITE_DESCRIPTION} />
   </head>
   <body>
-    <main class="container">
+    <MainContainer>
       <Header title={SITE_TITLE} />
       <Intro title={`vixalien´s portfolio`} />
       <p>Personal projects I've worked on in the past.</p>
@@ -36,6 +37,6 @@ import ProjectsIndex from "../components/ProjectsIndex.astro";
           )
         }
       </footer>
-    </main>
+    </MainContainer>
   </body>
 </html>

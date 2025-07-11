@@ -13,7 +13,7 @@ interface Props {
 const { title, created, author, dateFormat } = Astro.props;
 ---
 
-<div class="intro">
+<div class="mt-12 mb-5">
   {
     created ? (
       <>
@@ -25,5 +25,5 @@ const { title, created, author, dateFormat } = Astro.props;
       </>
     ) : null
   }
-  <h1>{title}</h1>
+  <h1 class="text-4xl font-bold">{title}</h1>
 </div>

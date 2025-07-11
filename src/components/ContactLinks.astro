@@ -35,7 +35,11 @@ const links = [
     links.map((link) => {
       return (
         <li>
-          <a href={link.url} class="link-with-icon" rel={link.rel}>
+          <a
+            href={link.url}
+            class="inline-flex gap-1 items-center align-text-top"
+            rel={link.rel}
+          >
             <IconSelector link={link.url} />
             <span>{link.title}</span>
           </a>
@@ -44,7 +48,11 @@ const links = [
     })
   }
   <li>
-    <a href="/rss.xml" title="Atom Feed" class="link-with-icon">
+    <a
+      href="/rss.xml"
+      title="Atom Feed"
+      class="inline-flex gap-1 items-center align-text-top"
+    >
       <IconRssFeed />
       <span>RSS</span>
     </a>

@@ -3,80 +3,59 @@ import BaseHead from "../components/BaseHead.astro";
 import { SITE_TITLE, SITE_DESCRIPTION, AUTHOR } from "../consts";
 import Intro from "../components/Intro.astro";
 import ContactLinks from "../components/ContactLinks.astro";
+import MainContainer from "../components/MainContainer.astro";
 ---
 
 <!doctype html>
 <html lang="en">
-	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-	</head>
-	<body>
-		<main class="container">
-			<header>
-				<nav>
-					<a href="/blog">blog</a>
-					<a href="/portfolio">portfolio</a>
-					<a href="https://memories.vixalien.com" target="_blank">memories &#8599;</a>
-				</nav>
-			</header>
-			<Intro title={SITE_TITLE} />
-			<p>
-				Hello! I'm Angelo Verlain, but you can call me <i>vixalien</i>. I am a
-				web and GTK developer and this is my website, a collection of projects
-				and writings.
-			</p>
-			<p>
-				You'll mostly find me working on open-source projects, particularly
-				involved with the GNOME Project, Alpine Linux and others.
-			</p>
-			<p>
-				You can read about what I do by reading a few of my regular <a
-					href="/blog">blog posts</a
-				>, or see a list of projects I've worked on in the past by visiting my <a
-					href="/portfolio">portfolio</a
-				>.
-			</p>
-			<p>
-				Also keep an eye on <a href="https://karabo.io">Karabo</a>, which is an
-				upcoming start-up I'm working on to help improve organisational
-				procedures in the region.
-			</p>
-			<h2 id="contact">Contact & Links</h2>
-			<ContactLinks />
-			<footer>
-				&copy; {AUTHOR}
-				{new Date().getFullYear()}
-			</footer>
-		</main>
-	</body>
+  <head>
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+  </head>
+  <body>
+    <MainContainer>
+      <header>
+        <nav>
+          <ul
+            class="flex-row list-none pl-0 gap-8 *:*:text-fg *:*:hover:text-link *:*:border-b"
+          >
+            <li><a href="/blog">blog</a></li>
+            <li><a href="/portfolio">portfolio</a></li>
+            <li>
+              <a href="https://memories.vixalien.com" target="_blank"
+                >memories &#8599;</a
+              >
+            </li>
+          </ul>
+        </nav>
+      </header>
+      <Intro title={SITE_TITLE} />
+      <p>
+        Hello! I'm Angelo Verlain, but you can call me <i>vixalien</i>. I am a
+        web and GTK developer and this is my website, a collection of projects
+        and writings.
+      </p>
+      <p>
+        You'll mostly find me working on open-source projects, particularly
+        involved with the GNOME Project, Alpine Linux and others.
+      </p>
+      <p>
+        You can read about what I do by reading a few of my regular <a
+          href="/blog">blog posts</a
+        >, or see a list of projects I've worked on in the past by visiting my <a
+          href="/portfolio">portfolio</a
+        >.
+      </p>
+      <p>
+        Also keep an eye on <a href="https://karabo.io">Karabo</a>, which is an
+        upcoming start-up I'm working on to help improve organisational
+        procedures in the region.
+      </p>
+      <h2 id="contact">Contact & Links</h2>
+      <ContactLinks />
+      <footer>
+        &copy; {AUTHOR}
+        {new Date().getFullYear()}
+      </footer>
+    </MainContainer>
+  </body>
 </html>
-
-<style>
-	.heading {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-	}
-
-	nav {
-		padding: 0;
-		display: flex;
-		gap: 2rem;
-		list-style-type: none;
-		margin: 0;
-	}
-
-	/* nav ul li {
-		margin: 0;
-		line-height: 1;
-	} */
-
-	nav a {
-		border-bottom: 1px solid;
-		display: inline-block;
-	}
-
-	nav a:hover {
-		color: var(--heading-fg);
-	}
-</style>
