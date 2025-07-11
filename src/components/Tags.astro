@@ -8,7 +8,7 @@ const { tags } = Astro.props;
 
 {
   tags ? (
-    <small class="tags">
+    <small class="uppercase text-sm">
       {tags.map((tag, index) => (
         <>
           <a href={`/?tag=` + tag} class="tags">

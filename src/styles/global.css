@@ -1,7 +1,8 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "Atkinson Hyperlegible";
+  --font-sans: "Atkinson Hyperlegible", sans-serif;
+  --font-block: "Ginestra Black", sans-serif;
 
   --color-fg: #333;
   --color-bg: #fff;
@@ -40,7 +41,7 @@
   }
 
   h1 {
-    @apply text-4xl;
+    @apply text-7xl font-block;
   }
 
   h2 {
@@ -99,5 +100,12 @@
   font-family: "Atkinson Hyperlegible";
   src: url("/fonts/atkinson-bold.woff") format("woff");
   font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Ginestra Black";
+  src: url("/fonts/ginestra-black.otf") format("opentype");
+  font-weight: 400;
   font-style: normal;
 }

@@ -14,16 +14,16 @@ const { title, created, author, dateFormat } = Astro.props;
 ---
 
 <div class="mt-12 mb-5">
+  <h1>{title}</h1>
   {
     created ? (
       <>
-        <small>
-          {author && <span>{author || ""} at </span>}
+        <small class="uppercase text-fg/80">
+          <!-- {author && <span>{author || ""} on </span>} -->
           <PrettyDate date={created} dateFormat={dateFormat} />
         </small>
         <br />
       </>
     ) : null
   }
-  <h1 class="text-4xl font-bold">{title}</h1>
 </div>
