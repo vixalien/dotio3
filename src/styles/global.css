@@ -34,7 +34,7 @@
   }
 
   a {
-    @apply text-link border-b hover:text-fg;
+    @apply text-link border-b hover:text-heading;
   }
 
   p,
