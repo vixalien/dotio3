@@ -1,13 +1,27 @@
 @import "tailwindcss";
 
+:root {
+  --v-color-fg: #333;
+  --v-color-bg: #fff;
+  --v-color-heading: #000;
+  --v-color-link: #0169ec;
+
+  @media (prefers-color-scheme: dark) {
+    --v-color-fg: #a0a0a0;
+    --v-color-bg: #030f1b;
+    --v-color-heading: #fff;
+    --v-color-link: #5a99ff;
+  }
+}
+
 @theme {
   --font-sans: "Atkinson Hyperlegible", sans-serif;
   --font-block: "Ginestra Black", sans-serif;
 
-  --color-fg: #333;
-  --color-bg: #fff;
-  --color-heading: #000;
-  --color-link: #0169ec;
+  --color-fg: var(--v-color-fg);
+  --color-bg: var(--v-color-bg);
+  --color-heading: var(--v-color-heading);
+  --color-link: var(--v-color-link);
 }
 
 @layer base {
@@ -16,7 +30,7 @@
   }
 
   body {
-    @apply text-fg;
+    @apply text-fg bg-bg;
   }
 
   a {

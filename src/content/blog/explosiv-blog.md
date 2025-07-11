@@ -7,7 +7,7 @@ tags: [code, tutorial]
 
 Earlier this year, I created [Explosiv ↗][explosiv], a lightweight & fast static site generator that allows pages to be built with JSX. This is a tutorial on how to build a functional blog with Explosiv.
 
-# Terminology
+## Terminology
 
 We'll first talk about how the blog will be built. You can directly [jump to the programming part](#code) or directly view [the source code of the final blog on Github][explosiv-blog-source].
 
@@ -66,7 +66,7 @@ This is a paragraph wil _emphasized_ and **strongly emphasized** text. And this 
 
 This blog post you are reading is written in markdown too! You can [view the source code here ↗][post-source].
 
-# Code
+## Code
 
 Explosiv is a NodeJS framework. That means you'll need to have NodeJS installed first. NodeJS comes with a package manager called `npm` and we'll use it to install Explosiv.
 

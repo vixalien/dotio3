@@ -15,7 +15,7 @@ Useful links:
 - [Github ↗][github]
 - [Test Page ↗][test]
 
-# Rabbet is a monorepo
+## Rabbet is a monorepo
 
 Rabbet is built as a monorepo. That is, it is one repository (folder) but it contain other packages inside of it. The monorepo doesn't use any repo manager like Lerna or Yarn workspaces as the packages are not tightly coupled. The different packages are for different uses:
 
