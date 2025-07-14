@@ -34,7 +34,7 @@
   }
 
   a {
-    @apply text-link border-b hover:text-heading;
+    @apply text-link underline underline-offset-4 hover:text-heading;
   }
 
   p,
