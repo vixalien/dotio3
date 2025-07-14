@@ -55,7 +55,7 @@
   }
 
   h1 {
-    @apply text-7xl font-block;
+    @apply text-7xl font-block font-normal;
   }
 
   h2 {
