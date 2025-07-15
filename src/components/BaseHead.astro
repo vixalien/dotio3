@@ -37,6 +37,13 @@ const { title, description, image = "/blog-placeholder-1.jpg" } = Astro.props;
   type="font/woff"
   crossorigin
 />
+<link
+  rel="preload"
+  href="/fonts/ginestra-black.otf"
+  as="font"
+  type="font/opentype"
+  crossorigin
+/>
 
 <!-- Canonical URL -->
 <link rel="canonical" href={canonicalURL} />
