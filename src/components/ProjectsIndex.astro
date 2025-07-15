@@ -18,7 +18,7 @@ type Project = CollectionEntry<"portfolio">;
     projects.map(
       ({ data: { title, description, hero_image, bg_color, link } }) => (
         <a
-          class="border-0 rounded-lg hover:saturate-50 transition text-bg flex flex-col items-center"
+          class="no-underline rounded-lg hover:saturate-50 transition text-white flex flex-col items-center"
           href={link}
           style={bg_color ? { "background-color": bg_color } : null}
           target="_blank"
