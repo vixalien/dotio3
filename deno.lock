@@ -5,7 +5,8 @@
     "npm:@astrojs/sitemap@^3.4.1": "3.4.1",
     "npm:@tailwindcss/vite@^4.1.11": "4.1.11_vite@6.3.5__picomatch@4.0.2",
     "npm:astro@^5.9.3": "5.9.3_vite@6.3.5__picomatch@4.0.2_zod@3.25.64",
-    "npm:tailwindcss@^4.1.11": "4.1.11"
+    "npm:tailwindcss@^4.1.11": "4.1.11",
+    "npm:view-transitions-polyfill@^1.0.5": "1.0.5"
   },
   "npm": {
     "@ampproject/remapping@2.3.0": {
@@ -2435,6 +2436,9 @@
         "vfile-message"
       ]
     },
+    "view-transitions-polyfill@1.0.5": {
+      "integrity": "sha512-0KhF4YodPuaAlEd8Xz2sfwVU/bBIRfSNE5dX0zKF8RAFmDqu8UIkVppcxXlamfE7ZdLCM/6qpUdH3zFITD6+Yg=="
+    },
     "vite@6.3.5_picomatch@4.0.2": {
       "integrity": "sha512-cZn6NDFE7wdTpINgs++ZJ4N49W2vRp8LCKrn3Ob1kYNtOo21vfDoaV5GzBfLU4MovSAB8uNRm4jgzVQZ+mBzPQ==",
       "dependencies": [
@@ -2537,7 +2541,8 @@
         "npm:@astrojs/sitemap@^3.4.1",
         "npm:@tailwindcss/vite@^4.1.11",
         "npm:astro@^5.9.3",
-        "npm:tailwindcss@^4.1.11"
+        "npm:tailwindcss@^4.1.11",
+        "npm:view-transitions-polyfill@^1.0.5"
       ]
     }
   }
