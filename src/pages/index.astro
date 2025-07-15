@@ -18,8 +18,12 @@ import MainContainer from "../components/MainContainer.astro";
           <ul
             class="flex-row list-none pl-0 gap-8 *:*:text-fg *:*:hover:text-link"
           >
-            <li><a href="/blog">blog</a></li>
-            <li><a href="/portfolio">portfolio</a></li>
+            <li>
+              <a href="/blog">blog</a>
+            </li>
+            <li>
+              <a href="/portfolio">portfolio</a>
+            </li>
             <li>
               <a href="https://memories.vixalien.com" target="_blank"
                 >memories &#8599;</a
@@ -28,7 +32,7 @@ import MainContainer from "../components/MainContainer.astro";
           </ul>
         </nav>
       </header>
-      <Intro title={SITE_TITLE} />
+      <Intro transition:name="home" title={SITE_TITLE} />
       <p>
         Hello! I'm Angelo Verlain, but you can call me <i>vixalien</i>. I am a
         web and GTK developer and this is my website, a collection of projects
@@ -46,9 +50,9 @@ import MainContainer from "../components/MainContainer.astro";
         >.
       </p>
       <p>
-        Also keep an eye on <a href="https://karabo.io">Karabo</a>, which is an
-        upcoming start-up I'm working on to help improve organisational
-        procedures in the region.
+        Also keep an eye on <a href="https://karabo.io">Karabo &#8599;</a>,
+        which is an upcoming start-up I'm working on to help improve
+        organisational procedures in the region.
       </p>
       <h2 id="contact">Contact & Links</h2>
       <ContactLinks />

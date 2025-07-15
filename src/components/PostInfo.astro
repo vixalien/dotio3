@@ -2,26 +2,24 @@
 import type { CollectionEntry } from "astro:content";
 import Intro from "./Intro.astro";
 import Tags from "./Tags.astro";
+import PrettyDate from "./PrettyDate.astro";
 
 type Props = Pick<
   CollectionEntry<"blog">["data"],
   "title" | "description" | "publish_date" | "tags"
->;
+> & {
+  id: string;
+};
 
-const { title, description, publish_date, tags } = Astro.props;
+const { title, description, publish_date, tags, id } = Astro.props;
 ---
 
-<>
-  <Intro title={title} created={publish_date} author="Angelo Verlain" />
-  <p class="text-xl text-fg/80">
-    {description}
-    <!-- {state.readtime && (
-          <span>
-            <br />
-            {post.readTime} min read.
-          </span>
-        )} -->
-    <br />
+<Intro title={title} transition:name={`post-title-${id}`}>
+  <PrettyDate slot="prefix" class="text-sm" date={publish_date} />
+  <Fragment slot="suffix">
+    <p transition:name={`post-snippet-${id}`} class="text-xl text-fg/80 mb-0">
+      {description}
+    </p>
     <Tags tags={tags} />
-  </p>
-</>
+  </Fragment>
+</Intro>

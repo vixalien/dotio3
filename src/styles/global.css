@@ -25,10 +25,6 @@
 }
 
 @layer base {
-  html {
-    @apply scroll-smooth;
-  }
-
   body {
     @apply text-fg bg-bg;
   }

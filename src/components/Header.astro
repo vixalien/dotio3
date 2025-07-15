@@ -4,11 +4,11 @@ export interface Props {
   href?: string;
 }
 
-const { title = "Home", href = "/" } = Astro.props;
+const { title = "Home", href = "/", ...props } = Astro.props;
 ---
 
 <header>
   <nav>
-    <a href={href}>&larr; {title}</a>
+    <a transition:name="home" href={href} {...props}>&larr; {title}</a>
   </nav>
 </header>

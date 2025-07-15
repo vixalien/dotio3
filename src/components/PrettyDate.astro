@@ -4,9 +4,10 @@ import type { DateFormat } from "./Intro.astro";
 interface Props {
   date: Date;
   dateFormat?: DateFormat;
+  class?: string;
 }
 
-const { date, dateFormat } = Astro.props;
+const { date, dateFormat, class: className, ...props } = Astro.props;
 
 let formatted;
 if (dateFormat) {
@@ -20,4 +21,8 @@ if (dateFormat) {
 }
 ---
 
-<time datetime={date.toISOString()}>{formatted}</time>
+<time
+  class={`uppercase text-fg/80 tabular-nums ${className || ""}`}
+  datetime={date.toISOString()}
+  {...props}>{formatted}</time
+>

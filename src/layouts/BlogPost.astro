@@ -7,9 +7,11 @@ import PostInfo from "../components/PostInfo.astro";
 import { AUTHOR, PUBLISH_YEAR, SITE_TITLE } from "../consts";
 import MainContainer from "../components/MainContainer.astro";
 
-type Props = CollectionEntry<"blog">["data"];
+type Props = CollectionEntry<"blog">["data"] & {
+  id: string;
+};
 
-const { title, description, publish_date, hero_image, tags } = Astro.props;
+const { title, description, publish_date, hero_image, tags, id } = Astro.props;
 ---
 
 <html lang="en">
@@ -20,22 +22,23 @@ const { title, description, publish_date, hero_image, tags } = Astro.props;
 
   <body>
     <MainContainer>
-      <Header title="vixalien's blog" href="/blog" />
+      <Header title="vixalien's blog" href="/blog" transition:name="blog" />
       <PostInfo
         title={title}
         description={description}
         publish_date={publish_date}
         tags={tags}
+        id={id}
       />
       {
         hero_image ? (
           <img
-            class="rounded-lg"
+            class="rounded-lg my-12"
             src={hero_image}
             alt="Banner Image for post"
           />
         ) : (
-          <hr />
+          <hr class="mt-6" />
         )
       }
       <br />

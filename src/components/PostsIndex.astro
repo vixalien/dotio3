@@ -51,13 +51,17 @@ const postsByYear = Object.entries(
               }) => (
                 <li>
                   <div class="flex gap-2 items-center">
-                    <a href={`/blog/${id}`} class="leading-tight inline-block">
+                    <a
+                      href={`/blog/${id}`}
+                      class="leading-tight inline-block"
+                      transition:name={`post-title-${id}`}
+                    >
                       {title}
                     </a>
                     <div class="border-b border-dashed self-center flex-1" />
                     <PrettyDate date={publish_date ?? new Date()} />
                   </div>
-                  <p>{snippet}</p>
+                  <p transition:name={`post-snippet-${id}`}>{snippet}</p>
                 </li>
               ),
             )}

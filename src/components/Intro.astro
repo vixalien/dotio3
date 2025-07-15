@@ -5,25 +5,13 @@ export type DateFormat = (date: Date) => string;
 
 interface Props {
   title: string | null;
-  created?: Date;
-  author?: string;
-  dateFormat?: DateFormat;
 }
 
-const { title, created, author, dateFormat } = Astro.props;
+const { title, ...props } = Astro.props;
 ---
 
-<div class="mt-12 mb-5">
-  <h1>{title}</h1>
-  {
-    created ? (
-      <>
-        <small class="uppercase text-fg/80">
-          <!-- {author && <span>{author || ""} on </span>} -->
-          <PrettyDate date={created} dateFormat={dateFormat} />
-        </small>
-        <br />
-      </>
-    ) : null
-  }
+<div class="mt-12 mb-5 flex flex-col gap-2 items-start">
+  <slot name="prefix" />
+  <h1 {...props}>{title}</h1>
+  <slot name="suffix" />
 </div>

@@ -16,7 +16,7 @@ import MainContainer from "../components/MainContainer.astro";
   <body>
     <MainContainer>
       <Header title={SITE_TITLE} />
-      <Intro title={`vixalien's blog`} />
+      <Intro transition:name="blog" title={`vixalien's blog`} />
       <p>An archive of all my blog posts.</p>
       <h2>Posts</h2>
       <PostsIndex />
