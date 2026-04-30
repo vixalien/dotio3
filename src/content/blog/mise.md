@@ -260,3 +260,4 @@ mise will usually auto-detect which asset you want to use, but you can also spec
 [mise-core]: https://mise.jdx.dev/core-tools.html
 [mise-backends]: https://mise.jdx.dev/dev-tools/backends/
 [aqua]: https://aquaproj.github.io/
+[gnome-os]: https://os.gnome.org/
