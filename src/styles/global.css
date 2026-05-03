@@ -91,7 +91,7 @@
   }
 
   pre code {
-    @apply block p-2  bg-[#0a1826] text-[#b2b6bb];
+    @apply block p-2  bg-[#0a1826] text-[#b2b6bb] overflow-x-auto;
   }
 
   blockquote {

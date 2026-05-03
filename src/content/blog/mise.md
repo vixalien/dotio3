@@ -107,13 +107,13 @@ quicktype  Generate types and converters from JSON, Schema, and GraphQL provided
 
 ## Uninstalling
 
-```
+```bash
 mise unuse -g node
 ```
 
 ## Updating
 
-```
+```bash
 mise self-update # updating mise itself
 mise up          # updating tools installed by mise
 mise outdated    # checking if you have outdated tools
@@ -184,7 +184,7 @@ Other tools that are available from `core` include Node.js, Ruby, Python, etc...
 
 We could also have been explicit with the backend we want to use
 
-```
+```bash
 mise use -g core:node
 ```
 
