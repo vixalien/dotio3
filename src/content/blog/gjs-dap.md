@@ -1,7 +1,7 @@
 ---
 title: "Adding Debug Adapter Protocol Support to GJS"
 description: "Debugging GNOME JavaScript applications made easy"
-publish_date: 2026-08-26
+publish_date: 2026-08-27
 hero_image: /images/posts/gjs-dap/banner.png
 invert: true
 tags: [gnome, debugging, gsoc]
