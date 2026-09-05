@@ -14,6 +14,7 @@ export async function GET(context) {
     stylesheet: "/pretty-feed-v3.xsl",
     items: posts
       .toSorted((a, b) => b.data.publish_date - a.data.publish_date)
+      .filter((post) => !post.data.unlisted)
       .map((post) => ({
         title: post.data.title,
         description: post.data.description,

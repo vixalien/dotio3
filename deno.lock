@@ -2556,6 +2556,8 @@
         "npm:@astrojs/sitemap@^3.4.1",
         "npm:@tailwindcss/vite@^4.1.11",
         "npm:astro@^5.11.1",
+        "npm:markdown-it@^14.1.1",
+        "npm:sanitize-html@^2.17.3",
         "npm:tailwindcss@^4.1.11"
       ]
     }

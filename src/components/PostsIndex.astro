@@ -38,7 +38,9 @@ const postsByYear = Object.entries(
         <>
           <h3>{year}</h3>
           <ul>
-            {posts.map(
+            {posts
+              .filter((post) => !post.data.unlisted)
+              .map(
               ({
                 id,
                 data: {
@@ -59,7 +61,7 @@ const postsByYear = Object.entries(
                       {title}
                     </a>
                     <div class="border-b border-dashed self-center flex-1" />
-                    <PrettyDate date={publish_date ?? new Date()} />
+                    <PrettyDate class="text-nowrap" date={publish_date ?? new Date()} />
                   </div>
                   <p transition:name={`post-snippet-${id}`}>{snippet}</p>
                 </li>
