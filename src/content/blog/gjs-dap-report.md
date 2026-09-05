@@ -1,6 +1,6 @@
 ---
 title: "Project Final Report: Adding Debug Adapter Protocol Support to GJS"
-description: "Debugging GNOME JavaScript applications made easy"
+description: "How to debug a GJS application in Zed using DAP support"
 publish_date: 2026-09-03
 invert: true
 tags: [gnome, debugging, gsoc]
