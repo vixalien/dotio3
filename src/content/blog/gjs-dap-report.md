@@ -18,7 +18,7 @@ By the end of this post, you'll know how to launch a GJS app in Zed, set breakpo
 
 ## Setting Up
 
-The code I've implemented is currently in a [Merge Request being reviewed][mr], so to you use it, you will need to clone and build GJS from source (until it's merged).
+The code I've implemented is currently in a [Merge Request being reviewed][mr], so to you use it, you will need to clone and build GJS from source (until GNOME 52).
 
 ### Cloning and Building GJS from source
 
@@ -42,7 +42,7 @@ ninja -C _build
 meson devenv -C _build gjs-console ../script.js
 ```
 
-This will be required as long as the merge request is not merged.
+This will be required before GNOME 52.
 
 > Please note the path where you cloned GJS (e.g. `~/Projects/gjs`). We will need it later.
 
@@ -160,7 +160,7 @@ This frame has another tab that shows the various set breakpoints.
 
 #### 3. The console pane
 
-This pane shows the console output of the program and allows you to potentially execute commands (not supported in the GJS debugger).
+This pane shows the console output of the program and allows you to potentially execute commands (not yet supported in the GJS debugger).
 
 ![Console pane](/images/posts/gjs-dap-report/console.png)
 
@@ -258,18 +258,55 @@ You can set these options by going to the Breakpoints tab and then clicking eith
 
 ![Exception Breakpoints](/images/posts/gjs-dap-report/exception-breakpoints.png)
 
+## VS Code Extension
+
+As part of the project, I also worked on a VS Code extension for the GJS Debugger (in addition to the Zed one), but it's currently not working well due to some trouble passing the DAP messages around and viewing that extension's log.
+
+I anticipate to fix these issues so we can also support debugging GJS applications in VS Code, and will update this blog post when that's ready.
+
 ## My Biggest Challenge
+
+While working on this project, I would say I had 2 main challenges:
+
+Firstly, I really had trouble working well because of the remote nature of GSoC, and sometimes collaborating with my mentor would get off-tracked because (for some reason) I preferred working in a silo instead of realising my mentor was available to help me.
+
+Code-wise, the most challenging part was getting the message parsing (i.e. sending DAP messages and receiving them through stdio) to work. I tried many approaches on my own (see point 1 above) but at the end it got resolved when I decided to ask my mentor for help.
 
 ## Further Steps
 
 There are some remaining tasks that could be done to make the GJS debugger better, and here's some of them.
 
-1. Make it possible to debug GJS applications in VS Code by writing a VS Code extension for the GJS Debugger: I tried but didn't have much success.
+1. Make it possible to debug GJS applications in VS Code by writing a VS Code extension for the GJS Debugger: I tried but didn't have much success ([see above](#vs-code-extension)).
 2. Add support for debugging GJS applications in GNOME Builder: Currently blocked by [GNOME Builder itself lacking DAP support][gnome-builder-dap]
 3. Add support for evaluating expressions in the debugger when paused.
 4. Correctly stop/kill the script when the debug session ends.
+5. Enabling source map support, which will make debugging compiled GJS (and TypeScript!) applications (like GNOME Weather, GNOME Sound Recorder) easier.
+6. Testing and ensuring the debugger works well on macOS and Windows (I only tested on Linux).
+7. Redirect `console.log` and other output to the debug console.
+8. Allow attaching to already running GJS applications (potentially by implementing a SIGUSR1 handler and communicating via unix socket).
+9. Allow pausing the program that's being debugged (at any point).
+10. Implement setting or modifying variables in the debugger.
+11. Give information about the current exception when we hit an exception breakpoint (needs the VS Code extension).
+12. Maybe implement watching source code and live-reload of the code while debugging.
+13. Implement more DAP capabilities (e.g. function breakpoints, conditional breakpoints) to improve the debugging experience even more (including correct `presentationHint`)
+14. Show the scopes in a better way (e.g. merge the `global` and `GjsGlobal` scopes, potentially merge the `class body` scopes, etc...)
+15. Maybe support debugging the GNOME Shell??
+16. Maybe implement GJS debugging (and provide instructions) for other DAP clients like Emacs, Vim, etc. (see [full list of tools implementing DAP here][dap-tools])
+17. Maybe add documentation for debugging a GJS application while developing with meson (will need to add a `run_target`).
 
 Let me know if there's more support you may want, or if you'd like to work on any of these.
+
+## WASM
+
+As part of the GSoC project, during the initial community bonding period, I also worked on [improving WASM support in GJS][wasm-mr].
+
+## Conclusion
+
+I would like to thank Google Summer of Code for selecting me to work on this project, which I hope will improve the experience of writing, debugging and improve GJS applications.
+
+I'd also like to thank the GNOME Project for hosting GJS, which is an important part of the GNOME ecosystem.
+
+Finally, I'd like to thank my mentor Philip Chimento so much for his important skills, guidance, and support while I was working on this project.
 
 You can reach out in the GNOME JavaScript room in Matrix: [`#javascript:gnome.org`][gjs-matrix] for any questions or feedback.
 
@@ -284,3 +321,5 @@ You can reach out in the GNOME JavaScript room in Matrix: [`#javascript:gnome.or
 [stack-frames]: https://developer.mozilla.org/en-US/docs/Glossary/Call_stack
 [gnome-builder-dap]: https://gitlab.gnome.org/GNOME/gnome-builder/-/work_items/1325
 [gjs-matrix]: https://matrix.to/#/%23javascript:gnome.org
+[dap-tools]: https://microsoft.github.io/debug-adapter-protocol/implementors/tools/
+[wasm-mr]: https://gitlab.gnome.org/GNOME/gjs/-/merge_requests/1078

@@ -1,6 +1,7 @@
 @import "tailwindcss";
 
 :root {
+  scroll-behavior: smooth;
   --v-color-fg: #333;
   --v-color-bg: #fff;
   --v-color-heading: #000;
