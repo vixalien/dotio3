@@ -1,10 +1,9 @@
 ---
 title: "Project Final Report: Adding Debug Adapter Protocol Support to GJS"
 description: "How to debug a GJS application in Zed using DAP support"
-publish_date: 2026-09-03
+publish_date: 2026-09-07
 invert: true
 tags: [gnome, debugging, gsoc]
-unlisted: true
 ---
 
 Hello again! A few weeks ago, I wrote about the work I've been doing this summer adding Debug Adapter Protocol (DAP) support to GJS as part of Google Summer of Code (GSoC) 2026.
