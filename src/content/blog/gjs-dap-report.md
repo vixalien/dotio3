@@ -48,7 +48,7 @@ This will be required before GNOME 52.
 
 ### Editor setup
 
-You will also need to download and install [the Zed editor][zed]. I'm still working on VS Code support.
+You will also need to download and install [the Zed editor][zed]. The currently supported editors for GJS DAP are Zed and VS Code. We will use the Zed editor since it's more validated to work with the GJS DAP support currently.
 
 You will also need to install the [GJS Debugger Extension for Zed][zed-extension], which is currently [pending review to be included in the Zed extension store][zed-extension-pr].
 
@@ -108,6 +108,8 @@ That file will look like this:
 ```
 
 We will need to make a small modification to it to point it to the GJS we just compiled (otherwise it will use the default GJS from our system, which doesn't have the unmerged DAP changes).
+
+This is needed before GNOME 52 is released (which means gjs will be able to do this natively).
 
 We will do it by adding a `gjsPath` field to the configuration in this format:
 
@@ -240,15 +242,15 @@ With the application now paused, we can progressively move execution line-by-lin
 
 To "Step Over" (execute the current line and move to the next one), press the "Step Over" button in the debugger toolbar.
 
-<video src="/images/posts/gjs-dap-report/equals-stepping.webm" loop muted autoplay></video>
+<video src="/images/posts/gjs-dap-report/equals-stepping.webm" loop muted autoplay controls></video>
 
 You can also click the "Step Into" button to step into a function call (or just step over).
 
 Here's an example where I've added a breakpoint on Line 40 (first line of `pressedOperator` button) and stepping into the `updateDisplay` function call.
 
-<video src="/images/posts/gjs-dap-report/step-into.webm" loop muted autoplay></video>
+<video src="/images/posts/gjs-dap-report/step-into.webm" loop muted autoplay controls></video>
 
-Stepping back is not implemented.
+Stepping back is currently not implemented.
 
 ### 5. Breaking on Exceptions
 
@@ -260,23 +262,36 @@ You can set these options by going to the Breakpoints tab and then clicking eith
 
 ## VS Code Extension
 
-As part of the project, I also worked on a VS Code extension for the GJS Debugger (in addition to the Zed one), but it's currently not working well due to some trouble passing the DAP messages around and viewing that extension's log.
+I've also worked on a VS Code extension, which enables debugging GJS applications inside of VS Code, however it reamins highly experimental and many features are not working yet.
 
-I anticipate to fix these issues so we can also support debugging GJS applications in VS Code, and will update this blog post when that's ready.
+This is because I focused on the Zed extension and it's the one I used during development extensively, so the VS Code extension is not as well tested as the Zed one, but I am also planning to improve it and submit it to the VS Code extensions marketplace in-time for the GNOME 52 release!
 
-## My Biggest Challenge
+You can find instructions to use the [VS Code extension in it's repo][vscode-extension]. Here is an example of it debugging an application:
 
-While working on this project, I would say I had 2 main challenges:
+<video src="/images/posts/gjs-dap-report/vscode.webm" loop muted autoplay controls></video>
 
-Firstly, I really had trouble working well because of the remote nature of GSoC, and sometimes collaborating with my mentor would get off-tracked because (for some reason) I preferred working in a silo instead of realising my mentor was available to help me.
+## Challenges
+
+While working on this project, I had a few challenges:
+
+Firstly, I really had trouble working well because of the remote nature of GSoC, and sometimes collaborating with my mentor would get off-tracked because I tended towards working alone instead of realising my mentor was available to help me.
+For future participants, I would advise you to realise that your mentor is available to help you, instead of feeling like you should be 100% independent. In my experience, a mentor will usually point you to the right solution, or even help you understand topics you might otherwise get blocked on for too long.
 
 Code-wise, the most challenging part was getting the message parsing (i.e. sending DAP messages and receiving them through stdio) to work. I tried many approaches on my own (see point 1 above) but at the end it got resolved when I decided to ask my mentor for help.
+
+The issue was complex because we needed to have access to the standard input as a stream so we can parse the protocol's [`Content-Length: {nBytes}\r\n` headers][headers], then read the corresponding number of bytes exactly. My first instinct was to use [`Gio.DataInputStream`](https://gjs-docs.gnome.org/gio20~2.0/gio.datainputstream) directly, but it didn't because it wasn't possible to load `Gio`/`GLib` imports in the main realm.
+The solution was to create a few functions (`openInputStream`, `readLine` and `readBytes`) on the C++ side since it can use the Gio/GLib APIs, then expose them to the JS code that implements the DAP communication (and linking with Firefox/Spidermonkey's Debugger API).
+
+Another challenge I had was when implementing the VS Code extension. In the beginning, I wrote a Zed extension that would expose GJS' DAP capabilities to the Zed Editor. When working on a similar extension for VS Code, I got stuck a bit because VS Code doesn't have a native way to easily show the communications happening between the DAP client (in this case VS Code) and the DAP server (GJS), while Zed had an easy way to show them.
+This effectively hid a bug where Zed was sending/requesting an extra `/r/n` in the DAP requests & responses, while VS Code was not (they both implemented the standard differently). In the end, I created a wrapper script that would also log all the communications between the client and the server differently so I can diagnose that bug and fix it.
+
+A recommendation I would give to future GSoC participants is to also track time and progress well. When working on the project, I didn't regularly check my proposal and the different activities and their timelines, so I ended up moving/reprioritising tasks towards the end of the program, which could have been avoided if I always checked the timeline to make sure I'm still on track and adjusting early.
 
 ## Further Steps
 
 There are some remaining tasks that could be done to make the GJS debugger better, and here's some of them.
 
-1. Make it possible to debug GJS applications in VS Code by writing a VS Code extension for the GJS Debugger: I tried but didn't have much success ([see above](#vs-code-extension)).
+1. Bring the VS Code extension to feature parity as the Zed extension ([see above](#vs-code-extension)).
 2. Add support for debugging GJS applications in GNOME Builder: Currently blocked by [GNOME Builder itself lacking DAP support][gnome-builder-dap]
 3. Add support for evaluating expressions in the debugger when paused.
 4. Correctly stop/kill the script when the debug session ends.
@@ -296,9 +311,9 @@ There are some remaining tasks that could be done to make the GJS debugger bette
 
 Let me know if there's more support you may want, or if you'd like to work on any of these.
 
-## WASM
+## Improving WASM Support
 
-As part of the GSoC project, during the initial community bonding period, I also worked on [improving WASM support in GJS][wasm-mr].
+As part of the GSoC project, during the initial community bonding period, I also worked on [improving WASM support in GJS][wasm-mr]. The MR essentially connects WASM's event loop to the GLib main loop set up by GJS.
 
 ## Conclusion
 
@@ -323,3 +338,6 @@ You can reach out in the GNOME JavaScript room in Matrix: [`#javascript:gnome.or
 [gjs-matrix]: https://matrix.to/#/%23javascript:gnome.org
 [dap-tools]: https://microsoft.github.io/debug-adapter-protocol/implementors/tools/
 [wasm-mr]: https://gitlab.gnome.org/GNOME/gjs/-/merge_requests/1078
+[scopes]: https://developer.mozilla.org/en-US/docs/Glossary/Scope
+[headers]: https://microsoft.github.io/debug-adapter-protocol/overview#:~:text=Header%20Part
+[vscode-extension]: https://gitlab.gnome.org/vixalien/gjs-dap-vscode
